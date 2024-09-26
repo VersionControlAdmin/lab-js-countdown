@@ -22,19 +22,17 @@ function startCountdown() {
   console.log("startCountdown called!");
   const countdownInterval = setInterval(() => {
     console.log(remainingTime)
-    timeContainer.innerText = remainingTime;
     if (remainingTime === 10) {
       showToast("⏰ Final countdown! ⏰");
     }
     remainingTime--;
+    timeContainer.innerText = remainingTime;
     if (remainingTime === 5) {
       showToast("Start the engines! 💥");
     }
-    if (remainingTime === 0) {
+    if (remainingTime <= 0) {
       clearInterval(countdownInterval);
       showToast("Lift off! 🚀");
-    }
-    if (remainingTime <= 0) {
     }
   },1000)
 }
