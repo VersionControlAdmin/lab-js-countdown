@@ -6,7 +6,7 @@ let timer = null; // Variable to store the interval
 
 // ITERATION 1: Add event listener to the start button
 
-startButton = document.querySelector("#start-btn");
+let startButton = document.querySelector("#start-btn");
 startButton.addEventListener("click", startCountdown);
 
 
@@ -17,15 +17,24 @@ function startCountdown() {
   let messages = ["⏰ Final countdown! ⏰", "Start the engines! 💥","Lift off! 🚀"]
   toBeDisplayedMessage = messages[Math.floor(Math.random()*messages.length)]
   timeContainer = document.querySelector("#time");
+  startButton.disabled = true;
   timeContainer.innerText = remainingTime;
   console.log("startCountdown called!");
   const countdownInterval = setInterval(() => {
     console.log(remainingTime)
-    remainingTime--;
     timeContainer.innerText = remainingTime;
-    if (remainingTime <= 0) {
+    if (remainingTime === 10) {
+      showToast("⏰ Final countdown! ⏰");
+    }
+    remainingTime--;
+    if (remainingTime === 5) {
+      showToast("Start the engines! 💥");
+    }
+    if (remainingTime === 0) {
       clearInterval(countdownInterval);
-      showToast(toBeDisplayedMessage);
+      showToast("Lift off! 🚀");
+    }
+    if (remainingTime <= 0) {
     }
   },1000)
 }
